@@ -23,27 +23,17 @@ export class SpeachService {
         .map((result) => result.transcript)
         .join('');
       this.tempWords = transcript;
-      //this.voiceToTextSubject.next(this.text || transcript);
       // console.log('transcript', transcript);
       // console.log('this.text', this.text);
       this.voiceToText.set(this.text || transcript);
     });
     return this.initListeners();
   }
-
-  /**
-   * @description Add event listeners to get the updated input and when stoped
-   */
   initListeners() {
     this.recognition.addEventListener('end', (condition: any) => {
       this.recognition.stop();
     });
-    //return this.speakingPaused.asObservable();
   }
-
-  /**
-   * @description Function to mic on to listen.
-   */
   start() {
     this.text = '';
     this.isStoppedSpeechRecog = false;
@@ -62,14 +52,9 @@ export class SpeachService {
           this.recognition.lastActive = Date.now();
         }
       }
-      // this.voiceToTextSubject.next(this.text);
       this.voiceToText.update(() => this.text);
     });
   }
-
-  /**
-   * @description Function to stop recognition.
-   */
   stop() {
     this.text = '';
     this.isStoppedSpeechRecog = true;
@@ -78,10 +63,6 @@ export class SpeachService {
     this.recognition.isActive = false;
     this.speakingPaused.set(true);
   }
-
-  /**
-   * @description Merge previous input with latest input.
-   */
   wordConcat() {
     this.text = this.text.trim() + ' ' + this.tempWords;
     this.text = this.text.trim();
