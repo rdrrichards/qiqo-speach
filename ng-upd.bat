@@ -10,4 +10,4 @@ CALL git commit -am "cdk update to latest"
 CALL npm audit fix
 CALL git commit -am "post update commit"
 CALL ng b -c production
-CALL ng t --watch=false
+REM CALL ng t --watch=false
