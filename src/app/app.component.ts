@@ -1,11 +1,11 @@
-import { CommonModule } from '@angular/common';
+
 import { Component, inject } from '@angular/core';
 import { SpeachService } from './speach.service';
 import { FormsModule } from '@angular/forms';
 
 @Component({
     selector: 'app-root',
-    imports: [CommonModule, FormsModule],
+    imports: [FormsModule],
     templateUrl: './app.component.html',
     styleUrl: './app.component.css'
 })

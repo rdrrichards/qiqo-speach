@@ -1,5 +1,9 @@
-<button (click)="startRecording()" *ngIf="!isUserSpeaking">Record</button>
-<button (click)="stopRecording()" *ngIf="isUserSpeaking">Stop</button>
+@if (!isUserSpeaking) {
+  <button (click)="startRecording()">Record</button>
+}
+@if (isUserSpeaking) {
+  <button (click)="stopRecording()">Stop</button>
+}
 <p>
   <textarea type="text" placeholder="Transcript" [ngModel]="this.voiceRecognition.voiceToText()" cols="100" rows="50" ></textarea>
 </p>
